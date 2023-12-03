@@ -7,28 +7,34 @@ function isValidMatchPattern(pattern) {
     }
 }
 
-function redirect(details) {
-    let url = details.url;
-    browser.storage.sync.get(['pattern', 'suffix']).then(({ pattern, suffix }) => {
-        if (!url.endsWith(suffix)) {
-            url += suffix;
-            console.log(`Redirecting ${details.url} to ${url}`);
-            return { redirectUrl: url };
-        } else {
-            console.log(`Not redirecting`);
-            return {};
-        }
-    });
+function redirect(requestDetails, suffix) {
+    let url = requestDetails.url;
+    if (!url.endsWith(suffix)) {
+        url += suffix;
+        console.log(`Redirecting ${requestDetails.url} to ${url}`);
+        return { redirectUrl: url };
+    } else {
+        console.log(`Not redirecting`);
+        return {};
+    }
 }
 
-browser.storage.local.get(['pattern']).then(({ pattern }) => {
-    if (isValidMatchPattern(pattern)) {
-        browser.webRequest.onBeforeRequest.addListener(
-            redirect,
-            { urls: [pattern], types: ["main_frame"] },
-            ["blocking"]
-        );
-    } else {
-        console.log(`Invalid pattern: ${pattern}`);
+browser.storage.local.get('patternsAndSuffixes').then(({ patternsAndSuffixes }) => {
+    if (!patternsAndSuffixes) {
+        return;
+    }
+    for (let { pattern, suffix } of patternsAndSuffixes) {
+        pattern = pattern;
+        suffix = suffix;
+        console.log(`Adding listener for ${pattern}`);
+        if (isValidMatchPattern(pattern)) {
+            browser.webRequest.onBeforeRequest.addListener(
+                (requestDetails) => redirect(requestDetails, suffix),
+                { urls: [pattern], types: ["main_frame"] },
+                ["blocking"]
+            );
+        } else {
+            console.log(`Invalid pattern: ${pattern}`);
+        }
     }
 });
