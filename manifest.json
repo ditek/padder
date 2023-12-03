@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "URL Padder",
   "version": "1.0",
-  "description": "Pads the URL with a suffix",
+  "description": "Pads the URL with a custom suffix",
   "icons": {
     "48": "icon-48.png"
   },
