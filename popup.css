@@ -1,0 +1,88 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #393E46
+}
+/* utility classes */
+.flex-center{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.white{
+    color: #EEEEEE;
+}
+.mb{
+    margin-bottom: 10px;
+}
+.mt{
+    margin-top: 10px;
+}
+.rounded{
+    border-radius: 10px;
+}
+/* ------------ */
+
+.button{
+    background-color: #00ADB5;
+    padding: 8px 20px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+}
+.button:hover{
+  background-color: #00838a;
+
+}
+.input{
+    padding: 4px 10px;
+    border-style: none;
+}
+.input:active{
+    border: 0;
+    
+}
+table {
+    border: 2px solid #EEEEEE;
+    width: 95%;
+    border-radius: 10px;
+  }
+th{
+    border-bottom: 2px solid #EEEEEE;
+  }
+th, td {
+    text-align: center;
+    padding: 5px;
+  }
+tbody tr button{
+    color: #EEEEEE;
+    background-color: red;
+    cursor: pointer;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+tbody tr button:hover{
+  background-color: rgb(194, 2, 2);
+}
+
+/*new row animation */
+/* @keyframes slide-down {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  } */
+  /* .tb tr:first-child{
+    animation: slide-down 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out;
+  } */
